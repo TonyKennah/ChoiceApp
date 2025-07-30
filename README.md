@@ -1,4 +1,4 @@
-# Simple React App served via springboot with other endpoints
+# AI (ggemini) created React App served via springboot with other endpoints...
 
 ### `mvn spring-boot:run`
 
