@@ -1,4 +1,4 @@
-# Simple React App served via springboot with other enpoints
+# Simple React App served via springboot with other endpoints
 
 ### `mvn spring-boot:run`
 
