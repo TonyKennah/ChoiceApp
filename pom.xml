@@ -50,7 +50,7 @@
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>1.12.1</version>
                 <configuration>
-                    <workingDirectory>./</workingDirectory>
+                    <workingDirectory>frontend</workingDirectory>
                     <installDirectory>target</installDirectory>
                 </configuration>
                 <executions>
@@ -92,8 +92,8 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <target>
-                                <copy todir="target/classes/static">
-                                    <fileset dir="build"/>
+                                <copy todir="${project.build.directory}/classes/static">
+                                    <fileset dir="${project.basedir}/frontend/build"/>
                                 </copy>
                             </target>
                         </configuration>
