@@ -13,3 +13,4 @@ public class WebConfig implements WebMvcConfigurer {
                 .setViewName("forward:/index.html");
     }
 }
+
