@@ -6,7 +6,7 @@ const OptionsPage = () => {
     return (
         <div className="container">
             <h1>Select an Option</h1>
-            <form>
+            <form action="/config" method="post">
                 <label htmlFor="options">Choose an option:</label>
                 <select id="options" name="options">
                     <option value="option1">Option 1</option>

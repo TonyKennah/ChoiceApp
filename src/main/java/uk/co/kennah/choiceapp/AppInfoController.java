@@ -37,12 +37,18 @@ public class AppInfoController {
         return info;
     }
 
-    @GetMapping("/config")
-    public Map<String, Object> getConfig() {
+    @PostMapping("/config")
+     public Map<String, String> updateConfig(@RequestBody String request) {
         // You can populate this with application configuration details.
         // Be careful not to expose sensitive information here.
-        Map<String, Object> config = new HashMap<>();
-        config.put("feature.newUI.enabled", true);
-        return config;
+
+        System.out.println("Received config update. Selected option: " + request);
+        
+
+        return new HashMap<>(Map.of(
+            "status", "success",
+            "message", "Configuration updated successfully",
+            "selectedOption", request
+        ));
     }
 }
