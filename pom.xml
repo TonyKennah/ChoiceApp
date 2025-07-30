@@ -37,6 +37,13 @@
                 <configuration>
                     <mainClass>uk.co.kennah.choiceapp.ChoiceApplication</mainClass>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>com.github.eirslett</groupId>
