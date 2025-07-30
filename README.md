@@ -1,7 +1,15 @@
-# Getting Started with Create React App
+# Simple React App served via springboot with other enpoints
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### `mvn spring-boot:run`
 
+Runs the application which listens on port 8181.
+Open [http://localhost:8181](http://localhost:8181) to view it in the browser.
+
+Other endpoints include /info and /config
+
+---
+
+OLDER REACT STUFF
 ## Available Scripts
 
 In the project directory, you can run:
