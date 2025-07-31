@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 @RestController
@@ -55,6 +56,15 @@ public class AppInfoController {
      public ResponseEntity<Map<String, String>> updateConfig(@RequestParam(name = "options", defaultValue = "N/A") String selectedOption) {
         // You can populate this with application configuration details.
         // Be careful not to expose sensitive information here.
+        List<String> validOptions = List.of("option1", "option2", "option3", "option4", "N/A");
+        if (!validOptions.contains(selectedOption)) {
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("status", "error");
+            errorResponse.put("message", "Invalid option provided: " + selectedOption);
+            // Return a 400 Bad Request status with the error message
+            return ResponseEntity.badRequest().body(errorResponse);
+        }
+
         logger.info("Received config update. Selected option: {}", selectedOption);
 
         Map<String, String> response = new HashMap<>();

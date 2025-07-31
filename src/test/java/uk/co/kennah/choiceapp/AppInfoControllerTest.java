@@ -62,7 +62,8 @@ public class AppInfoControllerTest {
 
     @Test
     public void updateConfig_shouldReturnSuccess_whenOptionIsProvided() throws Exception {
-        String selectedValue = "option-test";
+        // Use a value that is valid according to the controller's validation logic
+        String selectedValue = "option2";
 
         mockMvc.perform(post("/config")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
@@ -83,5 +84,16 @@ public class AppInfoControllerTest {
                 .andExpect(jsonPath("$.status").value("success"))
                 .andExpect(jsonPath("$.message").value("Configuration updated successfully"))
                 .andExpect(jsonPath("$.selectedOption").value("N/A"));
+    }
+
+    @Test
+    public void updateConfig_shouldReturnBadRequest_forInvalidOption() throws Exception {
+        mockMvc.perform(post("/config")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("options", "invalid-option"))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.status").value("error"))
+                .andExpect(jsonPath("$.message").value("Invalid option provided: invalid-option"));
     }
 }
