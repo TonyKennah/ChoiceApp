@@ -1,17 +1,24 @@
 package uk.co.kennah.choiceapp;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 public class AppInfoController {
+
+    private static final Logger logger = LoggerFactory.getLogger(AppInfoController.class);
 
     private final BuildProperties buildProperties;
 
@@ -37,18 +44,16 @@ public class AppInfoController {
         return info;
     }
 
-    @PostMapping("/config")
-     public Map<String, String> updateConfig(@RequestBody String request) {
+    @PostMapping(path = "/config", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+     public ResponseEntity<Map<String, String>> updateConfig(@RequestParam(name = "options", defaultValue = "N/A") String selectedOption) {
         // You can populate this with application configuration details.
         // Be careful not to expose sensitive information here.
+        logger.info("Received config update. Selected option: {}", selectedOption);
 
-        System.out.println("Received config update. Selected option: " + request);
-        
-
-        return new HashMap<>(Map.of(
-            "status", "success",
-            "message", "Configuration updated successfully",
-            "selectedOption", request
-        ));
+        Map<String, String> response = new HashMap<>();
+        response.put("status", "success");
+        response.put("message", "Configuration updated successfully");
+        response.put("selectedOption", selectedOption);
+        return ResponseEntity.ok(response);
     }
 }
