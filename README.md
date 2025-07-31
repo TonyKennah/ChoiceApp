@@ -1,4 +1,11 @@
-# AI (gemini) created React App served via springboot with other endpoints...
+# AI (gemini) created React App served via springboot
+
+- created with Visual Studio Code
+- gemini Cli 2.5-pro
+- JDK 21
+- node 22.17.1
+
+### `mvn clean package`
 
 ### `mvn spring-boot:run`
 
