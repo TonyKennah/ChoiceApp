@@ -30,18 +30,25 @@ public class AppInfoController {
     @GetMapping("/info")
     public Map<String, Object> getInfo(@RequestParam(name = "includeTime", defaultValue = "false") boolean includeTime) {
         // Populated with actual application info from the build-info.properties file.
-        Map<String, Object> info = new HashMap<>();
-        info.put("app.name", buildProperties.getName());
-        info.put("app.version", buildProperties.getVersion());
-        info.put("build.time", buildProperties.getTime());
-        info.put("build.artifact", buildProperties.getArtifact());
-        info.put("build.group", buildProperties.getGroup());
+        Map<String, Object> appInfo = Map.of(
+                "name", buildProperties.getName(),
+                "version", buildProperties.getVersion()
+        );
+
+        Map<String, Object> buildInfo = Map.of(
+                "time", buildProperties.getTime(),
+                "artifact", buildProperties.getArtifact(),
+                "group", buildProperties.getGroup()
+        );
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("app", appInfo);
+        response.put("build", buildInfo);
 
         if (includeTime) {
-            info.put("server.time", Instant.now().toString());
+            response.put("server", Map.of("time", Instant.now().toString()));
         }
-
-        return info;
+        return response;
     }
 
     @PostMapping(path = "/config", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
