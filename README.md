@@ -1,5 +1,7 @@
 # React App with a Spring Boot Backend
 
+[![Build & Test Status](https://github.com/TonyKennah/choiceapp/actions/workflows/build.yml/badge.svg)](https://github.com/TonyKennah/choiceapp/actions/workflows/build.yml)
+
 This project is a single-page application built with React and served by a Spring Boot backend. The entire project is built and managed with Maven.
 
 ## Tech Stack
@@ -32,3 +34,10 @@ The application will be available at http://localhost:8181.
 This project uses Spring Boot DevTools for a better development experience. Once you start the application with `mvn spring-boot:run`, you can:
 - **Backend Changes**: Simply save a Java file, and the application will automatically restart.
 - **Frontend Changes**: After saving a `.tsx` or `.css` file, run `mvn package` in a separate terminal. DevTools will detect the new static files and automatically reload your browser.
+
+## Continuous Integration
+
+This project uses GitHub Actions to automate the build and test process. On every push and pull request to the `main` branch, the following actions are performed:
+
+- The full Maven project is built using `mvn clean package`.
+- Automated tests for the backend are executed to ensure code correctness and stability.
