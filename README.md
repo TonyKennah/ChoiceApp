@@ -1,6 +1,6 @@
 # React App with a Spring Boot Backend
 
-[![Build & Test Status](https://github.com/TonyKennah/choiceapp/actions/workflows/build.yml/badge.svg)](https://github.com/TonyKennah/choiceapp/actions/workflows/build.yml)
+[![Build & Test Status](https://github.com/TonyKennah/choiceapp/actions/workflows/maven.yml/badge.svg)](https://github.com/TonyKennah/choiceapp/actions/workflows/maven.yml)
 
 This project is a single-page application built with React and served by a Spring Boot backend. The entire project is built and managed with Maven.
 
