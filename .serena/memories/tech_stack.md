@@ -1,0 +1,3 @@
+- Backend: Java 17, Spring Boot 3.1.4
+- Frontend: React, TypeScript
+- Build: Maven, Node.js 18.12.1, npm 8.19.2

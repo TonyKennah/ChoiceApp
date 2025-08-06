@@ -1,0 +1,1 @@
+This project is a single-page application built with React and served by a Spring Boot backend. The entire project is built and managed with Maven. It provides a simple UI to select an option and a backend to process it.

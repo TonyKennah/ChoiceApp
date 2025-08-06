@@ -1,0 +1,11 @@
+- `src/main/java`: Contains the Spring Boot backend code.
+  - `ChoiceApplication.java`: The main application class.
+  - `AppInfoController.java`: A REST controller for application information and configuration.
+  - `WebConfig.java`: Web configuration for the application.
+- `frontend`: Contains the React frontend code.
+  - `src`: The frontend source code.
+    - `App.tsx`: The main React component.
+    - `components`: Contains the React components.
+  - `public`: Contains the public assets for the frontend.
+  - `package.json`: Defines the frontend dependencies and scripts.
+- `pom.xml`: The Maven build file for the entire project.

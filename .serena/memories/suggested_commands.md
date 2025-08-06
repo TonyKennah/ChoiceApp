@@ -1,0 +1,5 @@
+- `mvn clean package`: Build the entire application (backend and frontend).
+- `mvn spring-boot:run`: Run the application.
+- `cd frontend && npm start`: Run the frontend in development mode.
+- `cd frontend && npm test`: Run frontend tests.
+- `mvn test`: Run backend tests.

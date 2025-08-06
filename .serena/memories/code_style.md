@@ -1,0 +1,1 @@
+The project follows standard Java and TypeScript conventions. The backend uses Spring Boot with a standard project structure. The frontend is a standard React application created with `create-react-app`.
