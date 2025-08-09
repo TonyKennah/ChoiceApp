@@ -1,7 +1,5 @@
 # React App with a Spring Boot Backend
 
-[![Build & Test Status](https://github.com/TonyKennah/choiceapp/actions/workflows/maven.yml/badge.svg)](https://github.com/TonyKennah/choiceapp/actions/workflows/maven.yml)
-
 This project is a single-page application built with React and served by a Spring Boot backend. It allows users to select an option and retrieve the latest odds from Betfair.
 
 ## Tech Stack
