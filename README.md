@@ -62,7 +62,4 @@ This project uses Spring Boot DevTools for a better development experience. Once
 
 ## Continuous Integration
 
-This project uses GitHub Actions to automate the build and test process. On every push and pull request to the `main` branch, the following actions are performed:
-
-- The full Maven project is built using `mvn clean package`.
-- Automated tests for the backend are executed to ensure code correctness and stability.
+-- turned off
