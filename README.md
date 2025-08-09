@@ -11,6 +11,10 @@ This project is a single-page application built with React and served by a Sprin
 
 ## How to Run
 
+### Prerequisite 
+
+a `lib` folder is required within the project root.  A jarfile is required in this folder created from the [PluckierOdds](https://github.com/TonyKennah/PluckierOdds) repo and will contain sensitive / secret data.  Without this the project will not even compile.
+
 1.  **Build the application:**
     This command cleans the project, installs frontend dependencies, builds the React app, and packages everything into a single `.jar` file.
     ```bash
@@ -36,16 +40,17 @@ The project is organized into two main parts: a Spring Boot backend and a React 
 
 ```
 .
-├── frontend/           # React frontend source code
+├── lib/tk-api-ng-1.0.jar  # Pluckier betafir wrapper
+├── frontend/              # React frontend source code
 │   ├── public/
 │   ├── src/
 │   └── package.json
-├── src/main/java/      # Spring Boot backend source code
+├── src/main/java/         # Spring Boot backend source code
 │   └── uk/co/kennah/choiceapp/
 │       ├── AppInfoController.java
 │       ├── ChoiceApplication.java
 │       └── WebConfig.java
-└── pom.xml             # Maven build configuration
+└── pom.xml                # Maven build config
 ```
 
 -   **`pom.xml`**: The root Maven file that manages the build for the entire project, including building the frontend and packaging it into the final JAR.
