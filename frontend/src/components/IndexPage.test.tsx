@@ -13,12 +13,12 @@ describe('IndexPage', () => {
   });
 
   test('renders the main heading', () => {
-    const headingElement = screen.getByText(/Welcome to the Index Page/i);
+    const headingElement = screen.getByText(/Welcome to the Odds Generator App/i);
     expect(headingElement).toBeInTheDocument();
   });
 
   test('renders the introductory paragraph', () => {
-    const paragraphElement = screen.getByText(/This is a simple React component named IndexPage./i);
+    const paragraphElement = screen.getByText(/This allows you to grab the latest odds from betfair./i);
     expect(paragraphElement).toBeInTheDocument();
   });
 

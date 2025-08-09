@@ -3,7 +3,7 @@ import '../funky.css';
 import { Link } from 'react-router-dom';
 
 const OptionsPage = () => {
-    const [selectedOption, setSelectedOption] = useState('option1');
+    const [selectedOption, setSelectedOption] = useState('UK');
     const [serverResponse, setServerResponse] = useState<any | null>(null);
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -59,10 +59,10 @@ const OptionsPage = () => {
             <form onSubmit={handleSubmit}>
                 <label htmlFor="options">Choose an option:</label>
                 <select id="options" name="options" value={selectedOption} onChange={handleChange}>
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
-                    <option value="option4">Option 4</option>
+                    <option value="UK">United Kingdom & Northern Ireland</option>
+                    <option value="FR">France</option>
+                    <option value="ZA">South Africa</option>
+                    <option value="AE">United Arab Emirates</option>
                 </select>
                 <div className="button-container">
                     <Link to="/" className="button">Back</Link>
@@ -71,7 +71,7 @@ const OptionsPage = () => {
             </form>
             {serverResponse && (
                 <div className="response-container">
-                    <h2>Server Response:</h2>
+                    <h2>Selected Odds:</h2>
                     <pre>
                         {JSON.stringify(serverResponse, null, 2)}
                     </pre>

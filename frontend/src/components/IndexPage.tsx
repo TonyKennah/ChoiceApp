@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 const IndexPage = () => {
     return (
         <div className="container">
-            <h1>Welcome to the Index Page</h1>
-            <p>This is a simple React component named IndexPage.</p>
+            <h1>Welcome to the Odds Generator App</h1>
+            <p>This allows you to grab the latest odds from betfair.</p>
             <Link to="/options" className="button">Go to Options</Link>
         </div>
     );

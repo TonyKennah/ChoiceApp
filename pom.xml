@@ -34,6 +34,17 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- Add your local JAR as a system-scoped dependency -->
+		<dependency>
+			<groupId>uk.co.kennah.tkapi</groupId>
+			<artifactId>tk-api-ng</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/tk-api-ng-1.0.jar</systemPath>
+		</dependency>
+
+
     </dependencies>
 
     <build>
@@ -41,7 +52,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
+                <!-- This ensures the system-scoped JAR is included in the final package -->
+				<configuration>
+                    <jvmArguments>--add-opens java.base/java.lang=ALL-UNNAMED</jvmArguments>
+					<includeSystemScope>true</includeSystemScope>
                     <mainClass>uk.co.kennah.choiceapp.ChoiceApplication</mainClass>
                 </configuration>
                 <executions>
@@ -51,6 +65,13 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>--add-opens java.base/java.lang=ALL-UNNAMED</argLine>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.github.eirslett</groupId>
