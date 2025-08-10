@@ -9,7 +9,7 @@ This project is a single-page application built with React and served by a Sprin
 
 ## How to Run
 
-### 1. Prerequisite: Authenticate to GitHub Packages
+### 1. Prerequisite: Authenticate to GitHub Packages ⚠️
 
 **Important:** This project relies on a private library, `PluckierOdds`, which is hosted in a private GitHub Packages repository. The build will fail unless you have been 	<ins>**granted access**</ins> to this repository.
 
