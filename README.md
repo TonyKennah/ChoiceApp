@@ -2,7 +2,7 @@
 
 # React App with a Spring Boot Backend
 
-This project is a single-page application built with React and served by a Spring Boot backend. It allows users to select an option and retrieve the latest odds from Betfair.
+This project is a single-page application built with React and served by a Spring Boot backend. It allows users to select and retrieve the latest horse racing odds from Betfair.
 
 ## Tech Stack
 - **Backend**: Java 17, Spring Boot 3.1.4
