@@ -63,6 +63,7 @@
 				<configuration>
                     <jvmArguments>--add-opens java.base/java.lang=ALL-UNNAMED</jvmArguments>
                     <mainClass>uk.co.kennah.choiceapp.ChoiceApplication</mainClass>
+                    <mainClass>uk.co.kennah.choiceapp.ChoiceApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
