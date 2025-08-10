@@ -11,7 +11,7 @@ This project is a single-page application built with React and served by a Sprin
 
 ### 1. Prerequisite: Authenticate to GitHub Packages
 
-**Important:** This project relies on a private library, `PluckierOdds`, which is hosted in a private GitHub Packages repository. The build will fail unless you have been granted access to this repository.
+**Important:** This project relies on a private library, `PluckierOdds`, which is hosted in a private GitHub Packages repository. The build will fail unless you have been **granted access** to this repository.
 
 For authorized users, you must configure Maven to authenticate with GitHub Packages:
 
