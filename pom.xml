@@ -48,7 +48,7 @@
         <repository>
             <id>github</id>
             <name>GitHub TonyKennah Packages</name>
-            <url>https://maven.pkg.github.com/TonyKennah</url>
+            <url>https://maven.pkg.github.com/TonyKennah/pluckierodds</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
