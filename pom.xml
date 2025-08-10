@@ -37,7 +37,7 @@
 
         <!-- Dependency from GitHub Packages -->
          <dependency>
-		    <groupId>TonyKennah</groupId>
+		    <groupId>uk.co.kennah</groupId>
             <artifactId>pluckierodds</artifactId>
             <version>1.0</version>
         </dependency>
@@ -47,8 +47,11 @@
     <repositories>
         <repository>
             <id>github</id>
-            <name>GitHub TonyKennah Apache Maven Packages</name>
+            <name>GitHub TonyKennah Packages</name>
             <url>https://maven.pkg.github.com/TonyKennah</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
