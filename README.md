@@ -9,21 +9,44 @@ This project is a single-page application built with React and served by a Sprin
 
 ## How to Run
 
-### Prerequisite 
+### 1. Prerequisite: Authenticate to GitHub Packages
 
-a `lib` folder is required within the project root.  A jarfile is required in this folder created from the [PluckierOdds](https://github.com/TonyKennah/PluckierOdds) repo and will contain sensitive / secret data.  Without this the project will not even compile.
+**Important:** This project relies on a private library, `PluckierOdds`, which is hosted in a private GitHub Packages repository. The build will fail unless you have been granted access to this repository.
 
-1.  **Build the application:**
-    This command cleans the project, installs frontend dependencies, builds the React app, and packages everything into a single `.jar` file.
-    ```bash
-    mvn clean package
+For authorized users, you must configure Maven to authenticate with GitHub Packages:
+
+1.  **Create a Personal Access Token (classic)** on GitHub with the `read:packages` scope.
+
+2.  **Configure your Maven `settings.xml`** file (usually at `~/.m2/settings.xml`) with a `<server>` entry. The `<id>` (`github`) must match the repository ID in the `pom.xml`.
+
+    ```xml
+    <settings>
+      ...
+      <servers>
+        <server>
+          <id>github</id>
+          <username>YOUR_GITHUB_USERNAME</username>
+          <password>YOUR_PERSONAL_ACCESS_TOKEN</password>
+        </server>
+      </servers>
+      ...
+    </settings>
     ```
+    Replace `YOUR_GITHUB_USERNAME` and `YOUR_PERSONAL_ACCESS_TOKEN` with your details.
 
-2.  **Run the application:**
-    This starts the Spring Boot server.
-    ```bash
-    mvn spring-boot:run
-    ```
+### 2. Build the application
+
+This command cleans the project, installs frontend dependencies, builds the React app, and packages everything into a single `.jar` file.
+```bash
+mvn clean package
+```
+
+### 3. Run the application
+
+This starts the Spring Boot server.
+```bash
+mvn spring-boot:run
+```
 
 The application will be available at http://localhost:8181.
 
@@ -38,28 +61,12 @@ The project is organized into two main parts: a Spring Boot backend and a React 
 
 ```
 .
-├── lib/tk-api-ng-1.0.jar  # Pluckier betafir wrapper
 ├── frontend/              # React frontend source code
 │   ├── public/
 │   ├── src/
-│   └── package.json
-├── src/main/java/         # Spring Boot backend source code
-│   └── uk/co/kennah/choiceapp/
-│       ├── AppInfoController.java
-│       ├── ChoiceApplication.java
-│       └── WebConfig.java
-└── pom.xml                # Maven build config
+│   └── ...
+├── src/                   # Spring Boot backend source code
+│   └── main/
+├── pom.xml                # Maven project configuration
+└── README.md              # This file
 ```
-
--   **`pom.xml`**: The root Maven file that manages the build for the entire project, including building the frontend and packaging it into the final JAR.
--   **`src/main/java`**: Contains all the Java source code for the Spring Boot backend.
--   **`frontend`**: Contains the React/TypeScript single-page application. The `frontend-maven-plugin` in the `pom.xml` handles building this part of the application.
-
-## Development
-This project uses Spring Boot DevTools for a better development experience. Once you start the application with `mvn spring-boot:run`, you can:
-- **Backend Changes**: Simply save a Java file, and the application will automatically restart.
-- **Frontend Changes**: After saving a `.tsx` or `.css` file, run `mvn package` in a separate terminal. DevTools will detect the new static files and automatically reload your browser.
-
-## Continuous Integration
-
--- turned off
