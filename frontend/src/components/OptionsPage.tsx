@@ -3,11 +3,17 @@ import '../funky.css';
 import { Link } from 'react-router-dom';
 
 const OptionsPage = () => {
-    const [selectedOption, setSelectedOption] = useState('UK');
+    const [selectedOption, setSelectedOption] = useState('ALL');
+    // A concise way to get today's date in YYYY-MM-DD format for the input default.
+    const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
     const [serverResponse, setServerResponse] = useState<any | null>(null);
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedOption(event.target.value);
+    };
+
+    const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSelectedDate(event.target.value);
     };
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -15,6 +21,7 @@ const OptionsPage = () => {
 
         const formData = new URLSearchParams();
         formData.append('options', selectedOption);
+        formData.append('date', selectedDate);
 
         try {
             const response = await fetch('/config', {
@@ -59,11 +66,21 @@ const OptionsPage = () => {
             <form onSubmit={handleSubmit}>
                 <label htmlFor="options">Choose an option:</label>
                 <select id="options" name="options" value={selectedOption} onChange={handleChange}>
+                    <option value="ALL">All Available Options</option>
                     <option value="UK">United Kingdom & Northern Ireland</option>
                     <option value="FR">France</option>
                     <option value="ZA">South Africa</option>
                     <option value="AE">United Arab Emirates</option>
                 </select>
+
+                <label htmlFor="date-picker">Choose a date:</label>
+                <input
+                    type="date"
+                    id="date-picker"
+                    name="date-picker"
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                />
                 <div className="button-container">
                     <Link to="/" className="button">Back</Link>
                     <button type="submit" className="button">Submit</button>

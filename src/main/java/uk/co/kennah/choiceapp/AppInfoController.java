@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import uk.co.kennah.tkapi.client.Session;
+import uk.co.kennah.tkapi.io.Writer;
 import uk.co.kennah.tkapi.model.MyRunner;
 import uk.co.kennah.tkapi.process.DataFetcher;
 
@@ -29,8 +30,6 @@ public class AppInfoController {
     private static final Logger logger = LoggerFactory.getLogger(AppInfoController.class);
 
     private final BuildProperties buildProperties;
-    private Map<Long, MyRunner> horses = null;
-    private LocalDateTime now;
 
     @Autowired
     public AppInfoController(BuildProperties buildProperties) {
@@ -62,44 +61,34 @@ public class AppInfoController {
 
     @PostMapping(path = "/config", consumes = { MediaType.APPLICATION_FORM_URLENCODED_VALUE })
     public ResponseEntity<Map<Long, MyRunner>> updateConfig(
-            @RequestParam(name = "options", defaultValue = "UK") String selectedOption) {
+            @RequestParam(name = "options", defaultValue = "ALL") String selectedOption, 
+            @RequestParam(name = "date", defaultValue = "") String selectedDate) {
         // You can populate this with application configuration details.
         // Be careful not to expose sensitive information here.
-        List<String> validOptions = List.of("UK", "FR", "ZA", "AE");
+        List<String> validOptions = List.of("ALL", "UK", "FR", "ZA", "AE");
         if (!validOptions.contains(selectedOption)) {
             Map<Long, MyRunner> errorResponse = new HashMap<>();
             errorResponse.put(999L, new MyRunner("Invalid option provided: " + selectedOption));
             // Return a 400 Bad Request status with the error message
             return ResponseEntity.badRequest().body(errorResponse);
         }
-
-        logger.info("Received config update. Selected option: {}", selectedOption);
-
-        Map<Long, MyRunner> response = new HashMap<>();
-        //response.put("status", "success");
-        //response.put("message", "Configuration updated successfully");
-        //response.put("selectedOption", selectedOption);
-        String dateToUse = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
-        response.putAll(getOdds(dateToUse));
-        return ResponseEntity.ok(response);
+        logger.info("Received update. Selected option: {}", selectedOption);
+        if(selectedDate.isEmpty()){
+            selectedDate = LocalDate.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
+        }
+        logger.info("Received update. Selected date: {}", selectedDate);
+        return ResponseEntity.ok(getOdds(selectedDate));
     }
 
     public Map<Long, MyRunner> getOdds(String date) {
-
-        if(now != null && now.isAfter(LocalDateTime.now().minusMinutes(5))) {
-            // If the data was fetched within the last 5 minutes, return the cached data
-            if(horses!=null && !horses.isEmpty()){
-                return horses;
-            }
-        }
-
-        horses = new HashMap<>();
+        Map<Long, MyRunner> horses = new HashMap<>();
         try {
             DataFetcher fetcher = new DataFetcher();
             Session session = fetcher.getSession();
             session.login();// Use the authenticator to log in
             if ("SUCCESS".equals(session.getStatus())) {
                 horses = fetcher.getData(date);
+                new Writer().publishAsJson(horses);
                 session.logout();
             } else {
                 System.err.println("Login failed with status: " + session.getStatus() + ". Aborting operation.");
@@ -108,7 +97,6 @@ public class AppInfoController {
             System.err.println("An unexpected error occurred in the main process:");
             e.printStackTrace();
         } 
-        now = LocalDateTime.now();
         return horses;
     }
 

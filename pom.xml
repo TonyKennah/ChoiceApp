@@ -39,7 +39,7 @@
          <dependency>
 		    <groupId>uk.co.kennah</groupId>
             <artifactId>pluckierodds</artifactId>
-            <version>1.0</version>
+            <version>0.0.5-SNAPSHOT</version>
         </dependency>
 
     </dependencies>
@@ -62,7 +62,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
                     <jvmArguments>--add-opens java.base/java.lang=ALL-UNNAMED</jvmArguments>
-                    <mainClass>uk.co.kennah.choiceapp.ChoiceApplication</mainClass>
                     <mainClass>uk.co.kennah.choiceapp.ChoiceApplication</mainClass>
                 </configuration>
                 <executions>
