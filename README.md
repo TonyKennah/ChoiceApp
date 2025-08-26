@@ -1,4 +1,4 @@
-[![Build & Test Status](https://github.com/TonyKennah/ChoiceApp/actions/workflows/maven.yml/badge.svg)](https://github.com/TonyKennah/ChiceApp/actions/workflows/maven.yml)
+[![Build & Test Status](https://github.com/TonyKennah/ChoiceApp/actions/workflows/maven.yml/badge.svg)](https://github.com/TonyKennah/ChoiceApp/actions/workflows/maven.yml)
 
 # React App with a Spring Boot Backend
 
